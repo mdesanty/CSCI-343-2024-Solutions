@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "serve -s dist",
+    "start": "vite",
     "postinstall": "npm run build",
     "dev": "vite",
     "build": "vite build",
