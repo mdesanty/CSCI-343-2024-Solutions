@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo } from "../slices/todoSlice";
 import { Container, Button, Modal, Form, Row, Col } from 'react-bootstrap';
 
 import TodoItem from './TodoItem';
 
 const TodoList = () => {
-  const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ name: "" });
   const [formErrors, setFormErrors] = useState({});
+
+  const { todoList } = useSelector(state => state.todos);
+  const dispatch = useDispatch();
 
   const addTask = (e) => {
     e.preventDefault();
@@ -30,14 +34,10 @@ const TodoList = () => {
     }
 
     if (valid) {
-      setTasks([...tasks, formData]);
+      dispatch(addTodo(formData));
       setShowModal(false);
       setFormData({ name: "" });
     }
-  }
-
-  const removeTask = (index) => {
-    setTasks(current => current.filter((task, i) => i !== index));
   }
 
   const hideModal = () => {
@@ -52,7 +52,7 @@ const TodoList = () => {
         <center>
           <Col md={8}>
             <Row>
-              <h1 className="mt-3 pb-2">TODO List</h1>
+              <h5 className="mt-3 pb-2">TODO List</h5>
             </Row>
             <Row>
               <Col md={12} className="text-start p-0">
@@ -61,10 +61,10 @@ const TodoList = () => {
             </Row>
             <div id="todo-list" className="text-start">
               <Col md={12}>
-                {tasks.length > 0 ?
+                {todoList.length > 0 ?
                   <>
-                    {tasks.map((task, index) => (
-                      <TodoItem key={index} index={index} todo={task} removeTask={removeTask} />
+                    {todoList.map((task, index) => (
+                      <TodoItem key={index} index={index} todo={task} />
                     ))}
                   </>
                   :
