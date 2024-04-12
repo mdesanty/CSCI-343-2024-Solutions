@@ -1,0 +1,38 @@
+#background {
+  background-image: url(../public/images/recipes_background.jpg);
+  background-color: #060C0C;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#header {
+  background-color: #5C2C06;
+}
+
+#header .nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+#header .nav-link.active {
+  text-decoration: underline;
+}
+
+#body .card-header {
+  background-color: #CC9900;
+}
+
+#app-container .nav {
+  background-color: #333300;
+}
+
+#body .btn-action {
+  background-color: #CC6600;
+  color: white;
+}
+
+#body .btn-action:hover {
+  background-color: #824200;
+  color: white;
+}
